@@ -1,4 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8.5 Mission | Ultimate Cinematic Launch + Sparks</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --space-bg:#05080f;
+  --cyan-glow:#00f7ff;
+  --warn-red:#ff003c;
+  --fire-core:#fff7e6;
+  --fire-mid:#ffaa00;
+  --fire-outer:#ff4d00;
+  --spark-glow:#ffd700;
+}
 
+body{margin:0;background:var(--space-bg);overflow:hidden;font-family:'Orbitron',sans-serif;}
+
+#preloader{
+  position:fixed;inset:0;background:radial-gradient(circle at center,#0d1221,#000);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;
+}
+
+.rocket-stage{
+  position:relative;width:240px;height:500px;
+  display:flex;justify-content:center;align-items:center;
+}
+
+.rocket-body{
+  position:relative;width:200px;z-index:2;transition:transform 0.1s;
+}
+
+.shaking-violent{animation:violent-shake 0.05s infinite alternate;}
+@keyframes violent-shake{
+  0%{transform:translate(2px,1px) rotate(0deg);}
+  25%{transform:translate(-1px,-2px) rotate(-1deg);}
+  50%{transform:translate(-3px,0px) rotate(1deg);}
+  75%{transform:translate(3px,2px) rotate(-1deg);}
+  100%{transform:translate(1px,-1px) rotate(0deg);}
+}
+
+.launching{animation:launch-up 3s cubic-bezier(0.6,0,0.4,1) forwards;}
+@keyframes launch-up{
+  0%{transform:translateY(0) scale(1);}
+  10%{transform:translateY(10px) scale(1.02);}
+  100%{transform:translateY(-2800px) scale(0.5);opacity:0;}
+}
+
+.thrust-container{
+  position:absolute;top:62%;left:50%;
+  transform:translateX(-50%);width:80px;height:0;
+  z-index:1;display:flex;justify-content:center;
+}
+.thrust-layer{position:absolute;top:0;border-radius:0 0 50% 50%;opacity:0;transition:opacity 0.2s;}
+.thrust-core{width:40px;background:linear-gradient(to bottom,var(--fire-core),var(--fire-mid));filter:blur(6px);box-shadow:0 0 30px var(--fire-core);}
+.thrust-main{width:70px;background:linear-gradient(to bottom,var(--fire-mid),var(--fire-outer),transparent);filter:blur(12px);}
+.thrust-glow{width:140px;height:300px;background:radial-gradient(ellipse at top,var(--fire-outer),transparent 70%);filter:blur(30px);top:-20px;}
+.engine-active .thrust-core{height:120px;opacity:1;animation:flicker 0.05s infinite alternate;}
+.engine-active .thrust-main{height:220px;opacity:0.95;animation:flicker 0.08s infinite alternate-reverse;}
+.engine-active .thrust-glow{opacity:0.8;animation:pulse-glow 0.1s infinite alternate;}
+@keyframes flicker{0%{transform:scaleY(1);opacity:0.8;}100%{transform:scaleY(1.15) scaleX(1.05);opacity:1;}}
+@keyframes pulse-glow{to{opacity:0.9;transform:scale(1.1);}}
+
+.ui-panel{margin-top:50px;text-align:center;color:white;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+
+.loader-box{width:300px;text-align:left;}
+.loader-text{font-size:12px;letter-spacing:3px;color:var(--cyan-glow);margin-bottom:10px;font-weight:700;}
+.progress-track{height:6px;background:rgba(0,247,255,0.1);border-radius:12px;border:1px solid rgba(0,247,255,0.3);overflow:hidden;}
+.progress-bar{height:100%;width:0%;background:var(--cyan-glow);box-shadow:0 0 20px var(--cyan-glow);transition:width 2.5s linear;}
+
+.countdown-num{font-size:9rem;font-weight:900;color:white;text-shadow:0 0 50px var(--cyan-glow);display:none;animation:count-scale 0.8s ease-in-out;}
+@keyframes count-scale{0%{transform:scale(0.5);}50%{transform:scale(1.4);}100%{transform:scale(1);}}
+
+.warning-system{display:none;color:var(--warn-red);animation:blink-warn 0.2s infinite;}
+.warn-icon{font-size:4.5rem;margin-bottom:14px;display:block;text-shadow:0 0 30px var(--warn-red);}
+.warn-text{font-size:1.7rem;font-weight:700;letter-spacing:5px;animation:warn-blink 0.5s infinite alternate;}
+@keyframes blink-warn{50%{opacity:0.5;}}
+@keyframes warn-blink{0%{opacity:1;}100%{opacity:0.3;}}
+
+/* SPARKS EFFECT */
+.spark{position:absolute;width:4px;height:4px;background:var(--spark-glow);border-radius:50%;opacity:0;pointer-events:none;filter:blur(2px);}
+</style>
+</head>
+<body>
+
+<div id="preloader">
+  <div class="rocket-stage">
+    <div class="rocket-body" id="rocket">
+      <!-- SVG roket sama desain lama -->
+      <svg viewBox="0 0 140 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="metalGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#eef2f3" />
+            <stop offset="50%" style="stop-color:#d1d5db" />
+            <stop offset="100%" style="stop-color:#8a919d" />
+          </linearGradient>
+          <linearGradient id="redPremium" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#ff3e3e" />
+            <stop offset="100%" style="stop-color:#c90000" />
+          </linearGradient>
+        </defs>
+        <path d="M30 120 Q10 140 5 170 Q35 165 45 140" fill="url(#redPremium)" stroke="#000" stroke-width="1"/>
+        <path d="M110 120 Q130 140 135 170 Q105 165 95 140" fill="url(#redPremium)" stroke="#000" stroke-width="1"/>
+        <path d="M70 10 C110 60 110 130 105 160 L35 160 C30 130 30 60 70 10 Z" fill="url(#metalGrad)" stroke="#2c3e50" stroke-width="2"/>
+        <path d="M45 160 L95 160 L90 175 L50 175 Z" fill="#333" stroke="#000"/>
+        <path d="M70 10 C90 40 95 60 98 80 L42 80 C45 60 50 40 70 10 Z" fill="url(#redPremium)" stroke="#000" stroke-width="1"/>
+        <circle cx="70" cy="100" r="12" fill="#00d2ff" stroke="#1a1a1a" stroke-width="2"/>
+        <circle cx="70" cy="130" r="10" fill="#00d2ff" stroke="#1a1a1a" stroke-width="2"/>
+        <text x="70" y="152" text-anchor="middle" font-family="Orbitron" font-size="10" font-weight="900" fill="#1a1a1a">8.5</text>
+      </svg>
+    </div>
+    <div class="thrust-container" id="engineSystem">
+      <div class="thrust-layer thrust-glow"></div>
+      <div class="thrust-layer thrust-main"></div>
+      <div class="thrust-layer thrust-core"></div>
+    </div>
+  </div>
+
+  <div class="ui-panel">
+    <div class="loader-box" id="loaderUI">
+      <div class="loader-text">SYSTEM INITIALIZATION_</div>
+      <div class="progress-track"><div class="progress-bar" id="bar"></div></div>
+    </div>
+    <div class="countdown-num" id="countUI">3</div>
+    <div class="warning-system" id="warnUI">
+      <i class="fas fa-exclamation-triangle warn-icon"></i>
+      <div class="warn-text" id="warnText">ENGINE IGNITION SEQUENCE</div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+<script>
+const loaderUI=document.getElementById('loaderUI');
+const bar=document.getElementById('bar');
+const countUI=document.getElementById('countUI');
+const warnUI=document.getElementById('warnUI');
+const warnText=document.getElementById('warnText');
+const rocket=document.getElementById('rocket');
+const engineSystem=document.getElementById('engineSystem');
+const preloader=document.getElementById('preloader');
+
+let sparks=[];
+
+function createSpark(){
+  const spark=document.createElement('div');
+  spark.className='spark';
+  document.body.appendChild(spark);
+  sparks.push(spark);
+}
+
+for(let i=0;i<30;i++){createSpark();}
+
+function animateSparks(){
+  sparks.forEach(s=>{
+    const rect=rocket.getBoundingClientRect();
+    s.style.left=(rect.left+rect.width/2 + (Math.random()*40-20))+'px';
+    s.style.top=(rect.bottom+Math.random()*5)+'px';
+    s.style.opacity=Math.random();
+    s.style.transform='scale('+(Math.random()*1.2)+')';
+  });
+  requestAnimationFrame(animateSparks);
+}
+
+animateSparks();
+
+setTimeout(()=>{bar.style.width='100%';},100);
+
+setTimeout(()=>{
+  loaderUI.style.display='none';
+  countUI.style.display='block';
+  let timer=3;
+  const countInterval=setInterval(()=>{
+    countUI.innerText=timer;
+    timer--;
+    if(timer<0){
+      clearInterval(countInterval);
+      countUI.style.display='none';
+      startWarningPhase();
+    }
+  },1000);
+},2500);
+
+function startWarningPhase(){
+  warnUI.style.display='block';
+  rocket.classList.add('shaking-violent');
+  warnText.innerText="ENGINE IGNITION SEQUENCE";
+
+  setTimeout(()=>{
+    warnText.innerText="LIFT OFF!";
+    warnUI.style.color="#fff";
+    document.querySelector('.warn-icon').style.color="#fff";
+    engineSystem.classList.add('engine-active');
+
+    setTimeout(()=>{
+      rocket.classList.remove('shaking-violent');
+      rocket.classList.add('launching');
+      setTimeout(()=>{
+        preloader.style.transition='opacity 1s';
+        preloader.style.opacity='0';
+        setTimeout(()=>{preloader.remove();},1000);
+      },1500);
+
+    },2000);
+
+  },2000);
+}
+</script>
+</body>
+</html>
 
 <!DOCTYPE html>
 <html lang="id">
