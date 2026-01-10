@@ -1,515 +1,474 @@
-
-             
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0'>
-    <title>Official Website of Class 8.5 </title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-
-    <style>
-        /* --- VARIABLE & RESET --- */
-        :root{
-            --void:#020617;
-            --glass:rgba(255,255,255,.08);
-            --glow1:#6366f1; /* Primary Blue/Purple */
-            --glow2:#22d3ee; /* Cyan */
-            --glow3:#a855f7; /* Violet */
-            --text-color: #f3f4f6;
-        }
-
-        *{margin:0;padding:0;box-sizing:border-box}
-        html{scroll-behavior:smooth}
-        body{
-            font-family:Poppins,sans-serif;
-            background:#000;
-            color:var(--text-color);
-            overflow-x:hidden;
-        }
-
-        /* EIGHT BG */
-        #FIVE{
-            position:fixed;inset:0;z-index:-2;
-            background:
-                radial-gradient(circle at 20% 30%,#6366f133,transparent 45%),
-                radial-gradient(circle at 80% 70%,#a855f733,transparent 50%),
-                radial-gradient(circle at 50% 50%,#22d3ee22,transparent 55%),
-                #000;
-            animation:voidMove 20s linear infinite alternate;
-        }
-        @keyframes voidMove{to{filter:hue-rotate(50deg)}}
-
-        .star{
-            position:absolute;width:2px;height:2px;background:#fff;opacity:.6;
-            animation:twinkle 3s infinite alternate;
-        }
-        @keyframes twinkle{from{opacity:.2}to{opacity:1}}
-
-        /* HEADER */
-        header{
-            position:fixed;top:0;width:100%;
-            background:rgba(0,0,0,.65);
-            backdrop-filter:blur(14px);
-            z-index:100;
-            border-bottom:1px solid #ffffff10;
-        }
-        .nav{
-            padding:16px 28px;
-            font-family:Orbitron;
-            font-weight:900;
-            letter-spacing:3px;
-        }
-
-        /* HERO */
-        .hero{
-            padding:170px 20px 90px;
-            text-align:center;
-            position: relative; /* Penting untuk positioning tombol */
-        }
-        .hero h1{
-            font-family:Orbitron;
-            font-size:clamp(3rem,9vw,5.2rem);
-            background:linear-gradient(90deg,#fff,var(--glow2),var(--glow3));
-            -webkit-background-clip:text;
-            -webkit-text-fill-color:transparent;
-        }
-        .hero p{opacity:.7;margin-top:12px; margin-bottom: 50px;} /* Tambah margin bawah untuk tombol */
-
-        /* QUICK BUTTONS (UPDATED FOR HERO SECTION) */
-        .quick-nav{
-            position: absolute; /* Relative to .hero */
-            bottom: -30px; /* Posisi di bawah hero text */
-            left: 50%;
-            transform: translateX(-50%);
-            display:flex;
-            flex-direction:row; /* Selalu horizontal */
-            gap:14px;
-            z-index:20;
-            flex-wrap: wrap;
-            justify-content: center;
-            max-width: 90%;
-        }
-        .quick-nav button{
-            background:linear-gradient(135deg,var(--glow1),var(--glow3));
-            border:none;
-            color:#fff;
-            padding:12px 16px;
-            border-radius:14px;
-            font-weight:600;
-            cursor:pointer;
-            box-shadow:0 0 25px #000;
-            transition:.3s;
-            text-shadow: 0 0 8px #000;
-        }
-        .quick-nav button:hover{
-            transform:scale(1.05); /* Sedikit diperkecil hover effect */
-            box-shadow:0 0 35px var(--glow2);
-        }
-
-        /* GENERAL */
-        section{max-width:1250px;margin:auto;padding:80px 20px}
-        .glass{
-            background:var(--glass);
-            border-radius:34px;
-            padding:48px;
-            backdrop-filter:blur(18px);
-            border:1px solid #ffffff10;
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
-        }
-        .title{
-            text-align:center;
-            font-family:Orbitron;
-            font-size:2.4rem;
-            margin-bottom:45px;
-            color:var(--glow2);
-        }
-        .title i{color:var(--glow3);margin-right:10px}
-
-
-        .grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-            gap:20px;
-        }
-        .box{
-            background:#020617;
-            border-radius:26px;
-            padding:26px;
-            border:1px solid #ffffff10;
-            transition:.3s;
-        }
-        .box:hover{transform:translateY(-8px);box-shadow:0 15px 30px rgba(34, 211, 238, 0.15);}
-        .box h4{font-family:Orbitron;color:var(--glow2);margin-bottom:10px}
-        
-        /* STRUKTUR GRID */
-        .struktur-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            text-align: center;
-        }
-
-        .struktur-card {
-            background: linear-gradient(145deg, var(--void), #0e122b);
-            border: 2px solid var(--glow1);
-            border-radius: 20px;
-            padding: 30px 15px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .struktur-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 10px 40px rgba(168, 85, 247, 0.4);
-        }
-
-        .struktur-card i {
-            font-size: 3rem;
-            color: var(--glow3);
-            margin-bottom: 15px;
-        }
-
-        .struktur-role {
-            font-weight: 700;
-            font-size: 0.8rem;
-            color: var(--glow2);
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-        }
-
-        .struktur-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        /* DATA SISWA - PREMIUM CARD STYLES */
-        .siswa-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 25px;
-            padding-top: 10px;
-        }
-        
-        .siswa-item {
-            /* Metallic/Dark Background */
-            background: linear-gradient(135deg, #1f2937, #0f172a); 
-            border-radius: 18px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-weight: 500;
-            cursor: default;
-            position: relative;
-            z-index: 1;
-
-            /* Glowing Border Effect (Requires two divs, or use box-shadow/border image) */
-            border: 2px solid transparent; 
-            border-image: linear-gradient(45deg, var(--glow2), var(--glow3), var(--glow2)) 1; 
-            box-shadow: 0 0 15px rgba(34, 211, 238, 0.2); 
-            transition: all 0.3s ease-in-out;
-        }
-        
-        .siswa-item:hover {
-            transform: translateY(-8px) scale(1.02);
-            /* Stronger Shadow on hover */
-            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4), 0 0 40px rgba(34, 211, 238, 0.2); 
-            border-image: linear-gradient(45deg, var(--glow3), var(--glow2), var(--glow3)) 1; 
-        }
-
-        .siswa-item .initial {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--glow3), var(--glow1));
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 1.4rem;
-            flex-shrink: 0;
-            box-shadow: 0 0 15px var(--glow3); /* Inisial bercahaya */
-        }
-        
-        .siswa-item:hover .initial {
-            background: linear-gradient(135deg, var(--glow2), var(--glow3));
-        }
-        
-        /* SEARCH BAR STYLES */
-        .search-container {
-            max-width: 500px;
-            margin: 0 auto 30px;
-            position: relative;
-        }
-
-        .search-container input {
-            width: 100%;
-            padding: 15px 20px 15px 50px; /* Padding kiri untuk ikon */
-            border-radius: 50px;
-            border: 2px solid var(--glow1);
-            background-color: #0e122b;
-            color: var(--text-color);
-            font-size: 1rem;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        .search-container input:focus {
-            border-color: var(--glow3);
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
-        }
-
-        .search-container i {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--glow2);
-            font-size: 1.1rem;
-        }
-
-        /* MOBILE MODE */
-        @media(max-width:768px){
-            section{padding:65px 16px}
-            .title{font-size:1.6rem; margin-bottom: 30px;}
-            .glass {padding: 30px 20px;}
-            .grid {grid-template-columns: 1fr;} 
-            .siswa-list {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            .siswa-item {
-                padding: 15px;
-            }
-            /* Quick Nav di Mobile */
-            .quick-nav {
-                max-width: 100%;
-                width: 100%;
-                bottom: -40px; /* Jarak dari bawah hero */
-            }
-            .quick-nav button{
-                padding:8px 10px;
-                font-size:.75rem; 
-                flex-grow: 1; /* Biar ukurannya rata */
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalobtand X Web Studio | Digital Systems</title>
 </head>
-
 <body>
+<header>
+<div class="container header-wrap">
+<div class="brand-main">
+<svg class="x-monogram" viewBox="0 0 48 48">
+<path d="M10 10L38 38M38 10L10 38" />
+</svg>
+Kalobtand <span>X</span> Web Studio
+</div>
+<div class="brand-sub">POWERED BY KALOBTAND X GROUP</div>
+</div>
+<div class="social-bar">
+<p>Kalobtand X Group Official Hub</p>
+</div>
+</header>
+<section class="hero">
+<div class="container">
+<h1>
+Digital Systems
 
-    <div id="void"></div>
+Built to <span>Scale</span>
+</h1>
+<p>
+Kami membangun website dan sistem digital profesional
+dengan pendekatan arsitektur, performa, dan pertumbuhan bisnis jangka panjang.
+</p>
+<div class="hero-actions">
+  <a href="#portfolio" class="sci-btn">
+    <svg viewBox="0 0 24 24"><path d="M4 4h16v4H4zM4 10h16v10H4z"/></svg>
+    PORTFOLIO
+  </a>
+  <a href="#packages" class="sci-btn">
+    <svg viewBox="0 0 24 24"><path d="M12 2l9 4-9 4-9-4zM3 10l9 4 9-4M3 14l9 4 9-4"/></svg>
+    PACKAGES
+  </a>
+  <a href="#referral" class="sci-btn">
+    <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 015 5v2h2a3 3 0 013 3v7H2v-7a3 3 0 013-3h2V7a5 5 0 015-5z"/></svg>
+    REFERRAL
+  </a>
+  <a href="#faq" class="sci-btn">
+    <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm2-7.5c-.6.7-1 1.1-1 2.5h-2c0-1.9.7-2.8 1.5-3.6.6-.6.9-.9.9-1.6a1.5 1.5 0 10-3 0H9a3.5 3.5 0 017 0c0 1.5-.6 2.3-1 2.7z"/></svg>
+    FAQ
+  </a>
+  <a href="#social" class="sci-btn">
+    <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM8 12h8M12 8v8"/></svg>
+    MEDIA
+  </a>
+</div>
 
-    <header>
-        <div class="nav">EIGHT FIVE •</div>
-    </header>
+</div>
+<div class="scroll-indicator">SCROLL DOWN</div>
+</section>
+<section id="ecosystem" class="ecosystem">
+<div class="container">
+<div class="eco-head">
+<h2>Kalobtand X Ecosystem</h2>
+<p>
+Kalobtand X Group menaungi tiga unit utama yang beroperasi
+dalam satu standar kualitas, satu sistem kerja,
+dan satu visi pertumbuhan jangka panjang.
+</p>
+</div>
+<div class="eco-grid">
+<div class="eco-card">
+<span class="eco-badge">CORE REVENUE ENGINE</span>
+<h3>
+<svg class="eco-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+Kalobtand X Web Studio
+</h3>
+<p class="eco-sub"> Digital Systems & Development
+ <strong>Powered by Kalobtand X Group</strong> </p>
+<ul>
+<li>Website</li>
+<li>Web Application</li>
+<li>Mobile Application (APK)</li>
+<li>Sistem digital & platform bisnis</li>
+</ul>
+<div class="eco-role"> ➡️ Core business & revenue engine utama </div>
+</div>
+  <div class="eco-card">
+    <span class="eco-badge">TRAFFIC & ATTENTION ENGINE</span>
+    <h3>
+      <svg class="eco-svg" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+      Kalobtand X Clipper
+    </h3>
+    <p class="eco-sub"> Content & Short-Form Production<br> <strong>Powered by Kalobtand X Group</strong> </p>
+    <ul>
+      <li>Video editing</li>
+      <li>Short-form content (Reels, TikTok, Shorts)</li>
+      <li>Content clipping & konten cepat</li>
+    </ul>
+    <div class="eco-role"> ➡️ Traffic & attention engine </div>
+  </div>
 
-    <section class="hero">
-        <h1>CLASS 8.5</h1>
-        <p/<Official Digital Hub</p>
+  <div class="eco-card">
+    <span class="eco-badge">DISTRIBUTION & SCALING ENGINE</span>
+    <h3>
+      <svg class="eco-svg" viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      Kalobtand X Digital
+    </h3>
+    <p class="eco-sub"> Branding, Marketing & Growth<br> <strong>Powered by Kalobtand X Group</strong> </p>
+    <ul>
+      <li>Digital branding</li>
+      <li>Campaign & advertising</li>
+      <li>Growth strategy</li>
+      <li>Funnel & conversion system</li>
+    </ul>
+    <div class="eco-role"> ➡️ Distribution & scaling engine </div>
+  </div>
+</div>
 
-        <div class="quick-nav">
-            <button onclick="go('struktur')"><i class="fas fa-sitemap"></i> Struktur</button>
-            <button onclick="go('siswa')"><i class="fas fa-users"></i> Siswa</button>
-            <button onclick="go('belajar')"><i class="fas fa-book-open"></i> Belajar</button>
-            <button onclick="go('piket')"><i class="fas fa-broom"></i> Piket</button>
-            <button onclick="go('seragam')"><i class="fas fa-shirt"></i> Seragam</button>
-        </div>
-        </section>
-
-    <section id="struktur">
-        <div class="glass">
-            <h2 class="title"><i class="fas fa-users-gear"></i> Struktur Kelas</h2>
-            <div class="struktur-grid">
-                
-                <div class="struktur-card">
-                    <i class="fas fa-chalkboard-user"></i>
-                    <div class="struktur-role">Wali Kelas</div>
-                    <div class="struktur-name">Ibu Dwi</div>
-                </div>
-
-                <div class="struktur-card">
-                    <i class="fas fa-crown"></i>
-                    <div class="struktur-role">Ketua Kelas</div>
-                    <div class="struktur-name">Aldi Franstia</div>
-                </div>
-                
-                <div class="struktur-card">
-                    <i class="fas fa-user-shield"></i>
-                    <div class="struktur-role">Wakil Ketua</div>
-                    <div class="struktur-name">M. Sabikul Hidayah</div>
-                </div>
-                
-                <div class="struktur-card">
-                    <i class="fas fa-file-invoice"></i>
-                    <div class="struktur-role">Sekretaris</div>
-                    <div class="struktur-name">Khalishatun Nafsih</div>
-                </div>
-                
-                <div class="struktur-card">
-                    <i class="fas fa-lock"></i>
-                    <div class="struktur-role">Keamanan</div>
-                    <div class="struktur-name">Naufal Thagribirdi I.</div>
-                </div>
-                
-                <div class="struktur-card">
-                    <i class="fas fa-broom"></i>
-                    <div class="struktur-role">Kebersihan</div>
-                    <div class="struktur-name">Furqan Aulia A.</div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="siswa">
-        <div class="glass">
-            <h2 class="title"><i class="fas fa-user-astronaut"></i> Daftar Siswa (31 Anggota)</h2>
-            
-            <div class="search-container">
-                <i class="fas fa-magnifying-glass"></i>
-                <input type="text" id="siswaSearch" placeholder="Cari nama siswa..." autocomplete="off">
-            </div>
-
-            <div class="siswa-list" id="siswaList">
-                <div class="siswa-item"><div class="initial">A</div>Afiqah Nur Zafirah</div>
-                <div class="siswa-item"><div class="initial">A</div>Afna Iilia</div>
-                <div class="siswa-item"><div class="initial">A</div>Aldi Franstia</div>
-                <div class="siswa-item"><div class="initial">A</div>Alfaiz Ramadhan</div>
-                <div class="siswa-item"><div class="initial">A</div>Annelia Kyrie E. S</div>
-                
-                <div class="siswa-item"><div class="initial">B</div>Bejeuroh Rifangga</div>
-                
-                <div class="siswa-item"><div class="initial">D</div>Dani Satria</div>
-                <div class="siswa-item"><div class="initial">D</div>Dzakiyah Nur M.</div>
-                
-                <div class="siswa-item"><div class="initial">F</div>Furqan Aulia Aflin</div>
-                
-                <div class="siswa-item"><div class="initial">G</div>Gebrela By Lova</div>
-                <div class="siswa-item"><div class="initial">G</div>Ghina Maulidia</div>
-                
-                <div class="siswa-item"><div class="initial">H</div>Helma Julia</div>
-                
-                <div class="siswa-item"><div class="initial">K</div>Khalishatun Nafsih</div>
-                
-                <div class="siswa-item"><div class="initial">L</div>Lili Dongoran</div>
-                <div class="siswa-item"><div class="initial">L</div>Liyana Safa Haura</div>
-                
-                <div class="siswa-item"><div class="initial">M</div>M. Fadil Alqil</div>
-                <div class="siswa-item"><div class="initial">M</div>M. Sabikul Hidayah</div>
-                <div class="siswa-item"><div class="initial">M</div>M. Ziaul Haq</div>
-                
-                <div class="siswa-item"><div class="initial">N</div>Naufal Khalfani</div>
-                <div class="siswa-item"><div class="initial">N</div>Naufal Thaghribidi I.</div>
-                <div class="siswa-item"><div class="initial">N</div>Nikmatul Zuhra</div>
-                <div class="siswa-item"><div class="initial">N</div>Nyak Alia Meisya</div>
-                <div class="siswa-item"><div class="initial">N</div>Nyak Shakila Soraya</div>
-                
-                <div class="siswa-item"><div class="initial">P</div>Putra Madya R.</div>
-                
-                <div class="siswa-item"><div class="initial">Q</div>Qabul Hidayat</div>
-                
-                <div class="siswa-item"><div class="initial">R</div>Rafi Herdi Pratama</div>
-                <div class="siswa-item"><div class="initial">R</div>Rika Nafisyah</div>
-                
-                <div class="siswa-item"><div class="initial">S</div>Salsabila</div>
-                <div class="siswa-item"><div class="initial">S</div>Sulthan Sauqi</div>
-                <div class="siswa-item"><div class="initial">S</div>Syifa Afiyah</div>
-                
-                <div class="siswa-item"><div class="initial">Z</div>Zahratul Muna</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="belajar">
-        <div class="glass">
-            <h2 class="title"><i class="fas fa-calendar-alt"></i> Jadwal Pembelajaran</h2>
-            <div class="grid">
-                <div class="box"><h4>Senin</h4>Olahraga<br>PPKN<br>B. Indonesia</div>
-                <div class="box"><h4>Selasa</h4>MTK<br>IPA<br>IPA<br>IPS</div>
-                <div class="box"><h4>Rabu</h4>PPKN<br>IPA<br>IPA<br>IPS</div>
-                <div class="box"><h4>Kamis</h4>BK<br>PAI<br>B. Indonesia<br>B. Inggris</div>
-                <div class="box"><h4>Jumat</h4>TIK<br>MTK</div>
-                <div class="box"><h4>Sabtu</h4>B. Inggris<br>Seni<br>Seni<br>B. Indonesia</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="piket">
-        <div class="glass">
-            <h2 class="title"><i class="fas fa-broom"></i> Jadwal Piket</h2>
-            <div class="grid">
-                <div class="box"><h4>Senin</h4>Aldi • Dzakiyah • Naufal T. • Muna • Nyak Shakila</div>
-                <div class="box"><h4>Selasa</h4>Afiqah • Angga • Afna • Rika • Rafi • Ghina</div>
-                <div class="box"><h4>Rabu</h4>Faiz • Lili • Khalisha • Furqan • Sulthan</div>
-                <div class="box"><h4>Kamis</h4>Arnelia • Geby • Naufal K. • Putra • Qabul • Dani</div>
-                <div class="box"><h4>Jumat</h4>Fadhil • Helma • Salsabila • Zuhra • M. Ziaul</div>
-                <div class="box"><h4>Sabtu</h4>Nyak Alia • Syifa • Liyana • Sabkul</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="seragam">
-        <div class="glass">
-            <h2 class="title"><i class="fas fa-shirt"></i> Jadwal Seragam</h2>
-            <div class="grid">
-                <div class="box"><h4>Senin</h4>Putih–Putih<br>Sepatu Putih<br>Bawa Baju Olahraga</div>
-                <div class="box"><h4>Selasa</h4>Putih–Biru<br>Sepatu Hitam</div>
-                <div class="box"><h4>Rabu</h4>Putih–Biru<br>Sepatu Hitam</div>
-                <div class="box"><h4>Kamis</h4>Seudati<br>Sepatu Hitam</div>
-                <div class="box"><h4>Jumat</h4>Batik<br>Sepatu Putih</div>
-                <div class="box"><h4>Sabtu</h4>Pramuka<br>Sepatu Hitam</div>
-            </div>
-        </div>
-    </section>
-    
-    <footer style="text-align:center;opacity:.6;padding:40px;color: #aaa; background: #000;">
-        Powered by Kalobtand X Web Studio
-    </footer>
-
-    <script>
-        /* STARS */
-        function createStars() {
-            const voidContainer = document.getElementById('void');
-            for(let i=0;i<120;i++){
-                let s=document.createElement('div');
-                s.className='star';
-                s.style.top=Math.random()*100+'%';
-                s.style.left=Math.random()*100+'%';
-                s.style.animationDelay = Math.random() * 3 + 's'; 
-                s.style.animationDuration = Math.random() * 2 + 2 + 's'; 
-                voidContainer.appendChild(s);
-            }
-        }
-        createStars();
-
-        /* SCROLL */
-        function go(id){
-            document.getElementById(id).scrollIntoView({behavior:'smooth'});
-        }
-
-        /* SEARCH FUNCTIONALITY */
-        const searchInput = document.getElementById('siswaSearch');
-        const siswaItems = document.getElementById('siswaList').querySelectorAll('.siswa-item');
-
-        searchInput.addEventListener('keyup', (e) => {
-            const searchTerm = e.target.value.toLowerCase().trim();
-            
-            siswaItems.forEach(item => {
-                const nameText = item.textContent.toLowerCase().trim();
-                
-                if (nameText.includes(searchTerm)) {
-                    item.style.display = 'flex';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
-    </script>
-
+</div>
+</section>
+<section id="portfolio" class="portfolio">
+<div class="container">
+<div class="section-head">
+<h2>Project Portfolio</h2>
+<p>Verified Technical Deployments</p>
+</div>
+<div class="portfolio-grid">
+<div class="portfolio-item">
+<div class="portfolio-label">ID: KTX-001</div>
+<h3 class="portfolio-title">Enterprise-grade E-Commerce System for Retail Client</h3>
+<p class="portfolio-meta">Deployed: Q4 2025</p>
+</div>
+<div class="portfolio-item">
+<div class="portfolio-label">ID: KTX-002</div>
+<h3 class="portfolio-title">High-Performance Web Application for FinTech Sector</h3>
+<p class="portfolio-meta">Deployed: Q1 2026</p>
+</div>
+<div class="portfolio-item">
+<div class="portfolio-label">ID: KTX-003</div>
+<h3 class="portfolio-title">Integrated Business Management Platform for Enterprise</h3>
+<p class="portfolio-meta">Deployed: Q1 2026</p>
+</div>
+</div>
+</div>
+</section>
+<section id="positioning" class="positioning">
+<div class="container">
+<div class="pos-head">
+<h2>Positioning & Model Kerja</h2>
+<p> Kami tidak bekerja dengan pola pesan → langsung jadi. Setiap proyek diperlakukan sebagai sistem hidup yang dirancang untuk tumbuh, beradaptasi, dan berkelanjutan. </p>
+</div>
+<div class="flow-grid">
+<div class="flow-card"> <span class="flow-step">01</span> <h3>Analisis</h3> <p> Memahami tujuan bisnis, kebutuhan teknis, dan potensi pengembangan jangka panjang. </p> </div>
+<div class="flow-card"> <span class="flow-step">02</span> <h3>Desain Sistem</h3> <p> Menyusun arsitektur, alur sistem, dan struktur teknologi yang siap berkembang. </p> </div>
+<div class="flow-card"> <span class="flow-step">03</span> <h3>Build</h3> <p> Implementasi sistem digital dengan standar kualitas, performa, dan keamanan. </p> </div>
+<div class="flow-card"> <span class="flow-step">04</span> <h3>Pengembangan Bertahap</h3> <p> Sistem dikembangkan seiring pertumbuhan bisnis, bukan berhenti di satu titik. </p> </div>
+</div>
+<div class="pos-statement"> ❌ Pesan → langsung jadi
+ ✅ Analisis → Desain Sistem → Build → Pengembangan Bertahap </div>
+</div>
+</section>
+<section id="webstudio" class="webstudio">
+<div class="container">
+<div class="ws-head">
+<h2>Kalobtand X Web Studio</h2>
+<p class="ws-sub"> Digital Systems & Development
+ <strong>Powered by Kalobtand X Group</strong> </p>
+<p class="ws-desc"> Kalobtand X Web Studio tidak menjual produk katalog atau paket kaku. Kami membangun sistem digital kustom berbasis analisis, arsitektur teknis, dan tujuan bisnis klien. </p>
+</div>
+<div class="ws-grid">
+<div class="ws-card"> <h3>Website</h3> <p> Website profesional yang dirancang sebagai sistem, bukan sekadar tampilan, dan siap dikembangkan. </p> </div>
+<div class="ws-card"> <h3>Web Application</h3> <p> Aplikasi web berbasis kebutuhan bisnis dengan struktur modular dan scalable. </p> </div>
+<div class="ws-card"> <h3>Mobile Application (APK)</h3> <p> Aplikasi mobile terintegrasi dengan sistem backend dan API sesuai kebutuhan. </p> </div>
+<div class="ws-card"> <h3>Sistem Digital & Platform Bisnis</h3> <p> Pengembangan platform dan sistem bisnis digital yang dirancang untuk pertumbuhan jangka panjang. </p> </div>
+</div>
+<div class="ws-role"> ➡️ Core business & revenue engine utama Kalobtand X Group </div>
+</div>
+</section>
+<section id="packages" class="pricing">
+<div class="container">
+<div class="price-head">
+<h2>Service Packages & Pricing Framework</h2>
+<p> Solusi digital bertahap, terukur, dan berkelanjutan. Setiap sistem dibangun berdasarkan analisis, bukan paket katalog kaku. </p>
+</div>
+<div class="price-grid">
+<div class="price-card">
+<span class="price-badge">STARTER SYSTEM</span>
+<div class="price-range">Rp 200.000 – Rp 10.000.000</div>
+<p class="price-desc"> Untuk UMKM & personal brand tahap awal. </p>
+<ul>
+<li>Website / aplikasi sederhana</li>
+<li>UI profesional & responsive</li>
+<li>Optimasi dasar</li>
+<li>Deploy dasar</li>
+<li>Struktur siap upgrade</li>
+</ul>
+</div>
+<div class="price-card highlight">
+<span class="price-badge">PROFESSIONAL SYSTEM</span>
+<div class="price-range">Rp 10.000.000 – Rp 50.000.000</div>
+<p class="price-desc"> Untuk bisnis berkembang & sistem menengah. </p>
+<ul>
+<li>UI / UX custom</li>
+<li>Backend & database</li>
+<li>Login & role user</li>
+<li>Integrasi fitur bisnis</li>
+<li>Optimasi performa & keamanan</li>
+</ul>
+</div>
+<div class="price-card">
+<span class="price-badge">ENTERPRISE SYSTEM</span>
+<div class="price-range">Rp 100.000.000 – Rp 500.000.000+</div>
+<p class="price-desc"> Untuk platform & ekosistem digital skala besar. </p>
+<ul>
+<li>Arsitektur enterprise</li>
+<li>Modular & scalable</li>
+<li>API & integrasi</li>
+<li>Keamanan tingkat lanjut</li>
+<li>Maintenance & roadmap</li>
+</ul>
+</div>
+</div>
+<div class="price-disclaimer"> <strong>Pernyataan Harga Resmi</strong>
+ Seluruh paket dan harga yang ditampilkan bersifat estimasi. Biaya final ditentukan berdasarkan kebutuhan teknis, kompleksitas sistem, dan ruang lingkup proyek setelah proses analisis. </div>
+</div>
+</section>
+<section id="support" class="support">
+<div class="container">
+<div class="support-head">
+<h2>Perbaikan, Hosting & Maintenance</h2>
+<p> Layanan pendukung untuk menjaga sistem digital tetap stabil, aman, dan siap dikembangkan. </p>
+</div>
+<div class="support-grid">
+<div class="support-card">
+<span class="support-badge">PERBAIKAN WEBSITE & CODING</span>
+<ul>
+<li>Ringan: Rp 100.000 – Rp 300.000</li>
+<li>Menengah: Rp 300.000 – Rp 700.000</li>
+<li>Kompleks: Rp 700.000 – Rp 2.000.000+</li>
+</ul>
+</div>
+<div class="support-card">
+<span class="support-badge">HOSTING & DEPLOY</span>
+<ul>
+<li>Deploy & setup: Rp 100.000 – Rp 250.000</li>
+<li>Migration: Rp 200.000 – Rp 500.000</li>
+</ul>
+</div>
+<div class="support-card">
+<span class="support-badge">MAINTENANCE</span>
+<ul>
+<li>Maintenance: Rp 100.000 – Rp 300.000 / bulan</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="referral" class="referral">
+<div class="container">
+<div class="ref-head">
+<h2>Sistem Referral Resmi</h2>
+<p> Setiap order nyata menghasilkan poin referral berdasarkan total budget proyek. </p>
+</div>
+<div class="ref-grid">
+<div class="ref-card">
+<span class="ref-badge">SKEMA POIN</span>
+<ul>
+<li>Rp 200.000 – Rp 499.999 → <strong>1 poin</strong></li>
+<li>Rp 500.000 – Rp 2.000.000 → <strong>2 poin</strong></li>
+<li>Rp 2.000.000 – Rp 10.000.000 → <strong>3 poin</strong></li>
+<li>Rp 10.000.000 – Rp 50.000.000 → <strong>10 poin</strong></li>
+<li>Rp 50.000.000 – Rp 100.000.000 → <strong>25 poin</strong></li>
+<li>≥ Rp 100.000.000 → <strong>50 poin</strong></li>
+</ul>
+</div>
+<div class="ref-card highlight">
+<span class="ref-badge">PENUKARAN POIN</span>
+<ul>
+<li>3 poin → Layanan Rp 300.000</li>
+<li>10 poin → Layanan Rp 1.000.000</li>
+<li>25 poin → Layanan Rp 3.000.000</li>
+<li>50 poin → Layanan Rp 7.500.000</li>
+</ul>
+</div>
+</div>
+<div class="ref-note"> <strong>Ketentuan Referral</strong>
+ • Poin tidak memiliki masa kadaluarsa
+ • Poin tidak dapat diuangkan
+ • Berlaku untuk seluruh layanan Kalobtand X Web Studio </div>
+</div>
+</section>
+<section id="faq" class="faq">
+<div class="container">
+<div class="faq-head">
+<h2>Pertanyaan yang Sering Diajukan</h2>
+<p> Beberapa hal penting yang perlu Anda ketahui sebelum memulai kerja sama dengan Kalobtand X Web Studio. </p>
+</div>
+<div class="faq-list">
+<details class="faq-item"> <summary>Apakah Kalobtand X hanya membuat website?</summary> <p> Tidak. Kami membangun sistem digital secara menyeluruh, mulai dari website, web application, hingga struktur sistem yang siap dikembangkan sesuai pertumbuhan bisnis. </p> </details>
+<details class="faq-item"> <summary>Apakah bisa request desain dan fitur khusus?</summary> <p> Bisa. Setiap proyek diawali dengan analisis kebutuhan, sehingga desain dan fitur disesuaikan dengan tujuan bisnis, bukan template massal. </p> </details>
+<details class="faq-item"> <summary>Berapa lama proses pengerjaan?</summary> <p> Durasi pengerjaan tergantung kompleksitas sistem. Proyek sederhana biasanya memakan waktu 5–14 hari, sedangkan sistem yang lebih kompleks akan disesuaikan dengan scope dan roadmap pengembangan. </p> </details>
+<details class="faq-item"> <summary>Apakah ada layanan maintenance setelah project selesai?</summary> <p> Ya. Kami menyediakan layanan maintenance dan support untuk memastikan sistem tetap stabil, aman, dan relevan dengan kebutuhan bisnis ke depan. </p> </details>
+<details class="faq-item"> <summary>Apakah bisa kerja sama jangka panjang?</summary> <p> Sangat bisa. Banyak klien bekerja dengan kami secara berkelanjutan untuk pengembangan sistem, optimasi, dan scaling bisnis digital. </p> </details>
+</div>
+</div>
+</section>
+<section class="positioning-v2">
+<div class="container">
+<div class="pos-box">
+<h2>Positioning Strategis</h2>
+<ul>
+<li>Tidak overbranding</li>
+<li>Struktur jelas & rapi</li>
+<li>Fungsi tiap unit tegas</li>
+<li>Cocok untuk UMKM hingga enterprise</li>
+<li>Mudah scale tanpa ubah struktur</li>
+</ul>
+<p class="pos-note"> Holding sederhana, tapi terlihat mahal dan profesional. </p>
+</div>
+</div>
+</section>
+<section class="ceo">
+<div class="container">
+<div class="ceo-box">
+<p class="quote"> “Kami membangun solusi digital yang dirancang untuk tumbuh, beradaptasi, dan berkelanjutan.” </p>
+<div class="ceo-name"> — WARLONDILX
+ <span>CEO Kalobtand X Group</span> </div>
+</div>
+</div>
+</section>
+<footer class="footer">
+<div class="container footer-wrap">
+<div class="footer-brand">
+<div class="footer-logo">Kalobtand <span>X</span> Web Studio</div>
+<div class="footer-powered"> Powered by Kalobtand X Group
+ Digital Systems • Sustainable Growth </div>
+</div>
+<div class="footer-links">
+<a href="#ecosystem">Ecosystem</a>
+<a href="#webstudio">Web Studio</a>
+<a href="#packages">Packages</a>
+<a href="#referral">Referral</a>
+</div>
+</div>
+<div class="footer-copy"> © Kalobtand X Web Studio. All rights reserved. </div>
+</footer>
+<style>
+/* ================= SYSTEM RESET ================= */
+:root {
+--bg-core: #030508;
+--bg-deep: #080c14;
+--text-main: #f0f4f8;
+--text-muted: #8b9bb4;
+--accent: #3b82f6;
+--accent-glow: rgba(59, 130, 246, 0.6);
+--glass: rgba(255, 255, 255, 0.03);
+--glass-border: rgba(255, 255, 255, 0.08);
+--line: rgba(255, 255, 255, 0.08);
+--font-mono: 'Courier New', monospace;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+font-family: 'Inter', system-ui, -apple-system, sans-serif;
+color: var(--text-main);
+background: var(--bg-core);
+line-height: 1.6;
+overflow-x: hidden;
+}
+/* Background Grid */
+body::before {
+content: "";
+position: fixed;
+inset: 0;
+background-image:
+linear-gradient(var(--line) 1px, transparent 1px),
+linear-gradient(90deg, var(--line) 1px, transparent 1px);
+background-size: 50px 50px;
+mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+pointer-events: none;
+z-index: -1;
+}
+.container { max-width: 1240px; margin: 0 auto; padding: 0 1.5rem; }
+/* ================= HEADER ================= */
+header {
+position: sticky; top: 0; z-index: 1000;
+background: rgba(3, 5, 8, 0.85);
+backdrop-filter: blur(20px);
+border-bottom: 1px solid var(--glass-border);
+}
+.header-wrap { height: 90px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.brand-main { font-size: 1.5rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; display: flex; align-items: center; gap: 10px; }
+.brand-main span { color: var(--accent); text-shadow: 0 0 20px var(--accent-glow); }
+.x-monogram { width: 32px; height: 32px; stroke: var(--accent); stroke-width: 2; fill: none; filter: drop-shadow(0 0 5px var(--accent)); }
+.brand-sub { font-size: 0.65rem; color: var(--text-muted); letter-spacing: 4px; margin-top: 5px; }
+.social-bar { width: 100%; height: 35px; background: var(--glass); display: flex; justify-content: center; align-items: center; font-size: 0.75rem; color: var(--text-muted); border-top: 1px solid var(--line); }
+/* ================= HERO ================= */
+.hero { min-height: 90vh; display: flex; align-items: center; text-align: center; position: relative; }
+.hero h1 { font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 900; line-height: 1; margin-bottom: 2rem; }
+.hero h1 span { color: var(--accent); text-shadow: 0 0 30px var(--accent-glow); }
+.hero p { max-width: 700px; margin: 0 auto 3.5rem; color: var(--text-muted); font-size: 1.15rem; font-weight: 300; }
+.hero-actions { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+.sci-btn {
+padding: 14px 24px; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px;
+color: #fff; border: 1px solid var(--line); background: var(--glass);
+border-radius: 8px; text-decoration: none; display: flex; align-items: center; gap: 8px;
+transition: 0.3s;
+}
+.sci-btn:hover { border-color: var(--accent); background: rgba(59, 130, 246, 0.1); transform: translateY(-3px); }
+.sci-btn svg { width: 18px; height: 18px; fill: var(--accent); }
+/* ================= SECTIONS ================= */
+section { padding: 8rem 0; border-bottom: 1px solid var(--line); }
+.eco-head, .pos-head, .ws-head, .price-head, .support-head, .ref-head, .faq-head, .section-head {
+text-align: center; margin-bottom: 5rem; max-width: 800px; margin-left: auto; margin-right: auto;
+}
+h2 { font-size: 2.5rem; margin-bottom: 1.5rem; text-transform: uppercase; }
+/* ================= ECOSYSTEM & CARDS ================= */
+.eco-grid, .ws-grid, .price-grid, .support-grid, .ref-grid {
+display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;
+}
+.eco-card, .ws-card, .price-card, .support-card, .ref-card, .portfolio-item {
+background: var(--glass); border: 1px solid var(--line); padding: 3rem;
+border-radius: 16px; backdrop-filter: blur(10px); transition: 0.4s;
+}
+.eco-card:hover, .ws-card:hover, .price-card:hover, .support-card:hover, .ref-card:hover, .portfolio-item:hover {
+border-color: var(--accent); transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.eco-svg { width: 40px; height: 40px; stroke: var(--accent); stroke-width: 1.5; fill: none; margin-bottom: 1rem; }
+.eco-badge, .price-badge, .support-badge, .ref-badge {
+display: inline-block; padding: 5px 15px; font-size: 0.6rem; font-family: var(--font-mono);
+color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; margin-bottom: 1.5rem;
+}
+/* ================= PORTFOLIO ================= */
+.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; }
+.portfolio-label { font-family: var(--font-mono); color: var(--accent); font-size: 0.75rem; margin-bottom: 1rem; }
+.portfolio-title { font-size: 1.1rem; margin-bottom: 1rem; }
+.portfolio-meta { font-size: 0.8rem; color: var(--text-muted); }
+/* ================= PRICING & DATA ================= */
+.price-range { font-family: var(--font-mono); font-size: 1.5rem; color: var(--accent); font-weight: 800; margin-bottom: 1rem; }
+.price-card.highlight, .ref-card.highlight { border-color: var(--accent); background: rgba(59, 130, 246, 0.05); }
+ul { list-style: none; }
+li { font-size: 0.9rem; color: var(--text-muted); padding: 5px 0; }
+li::before { content: "→"; color: var(--accent); margin-right: 10px; }
+.price-disclaimer, .pos-statement, .ws-role, .ref-note {
+margin-top: 4rem; padding: 2.5rem; background: var(--bg-deep); border: 1px dashed var(--line);
+border-radius: 12px; font-size: 0.9rem; color: var(--text-muted); text-align: center;
+}
+/* ================= FAQ ================= */
+.faq-list { max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+.faq-item { background: var(--glass); border: 1px solid var(--line); border-radius: 12px; padding: 1.5rem; }
+summary { font-weight: 700; cursor: pointer; color: var(--accent); padding: 5px; }
+/* ================= CEO & POSITIONING ================= */
+.pos-box ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 3rem 0; }
+.pos-box li { background: var(--glass); border: 1px solid var(--line); padding: 15px; border-radius: 8px; }
+.ceo { text-align: center; }
+.quote { font-size: 1.8rem; font-style: italic; margin-bottom: 2rem; font-weight: 200; }
+.ceo-name span { color: var(--text-muted); font-size: 0.8rem; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; }
+/* ================= FOOTER ================= */
+.footer { padding: 5rem 0 2rem; background: var(--bg-deep); border-top: 1px solid var(--line); }
+.footer-wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
+.footer-logo { font-size: 1.3rem; font-weight: 900; }
+.footer-logo span { color: var(--accent); }
+.footer-powered { font-size: 0.75rem; color: var(--text-muted); margin-top: 10px; line-height: 1.4; }
+.footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; margin-left: 20px; transition: 0.3s; }
+.footer-links a:hover { color: var(--accent); }
+.footer-copy { text-align: center; padding-top: 2rem; margin-top: 3rem;
+border-top: 1px solid var(--line); font-size: 0.7rem; color: var(--text-muted); font-family: var(--font-mono); }
+@media (max-width: 768px) {
+.footer-wrap { flex-direction: column; text-align: center; }
+.footer-links a { margin: 0 10px; }
+}
+</style>
 </body>
 </html>
